@@ -4,7 +4,7 @@ import { colors } from "../../utils/colors";
 export const styles = StyleSheet.create({
     container: {
         backgroundColor: "transparent",
-        paddingHorizontal: 20,
+        //paddingHorizontal: 20,
         marginBottom: 20,
     },
     inputContainer: {

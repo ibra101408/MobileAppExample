@@ -3,7 +3,7 @@ import { colors } from "../../../utils/colors"
 
 export const styles = StyleSheet.create({
     container: {
-        padding: "7%",
+       // padding: "7%",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
