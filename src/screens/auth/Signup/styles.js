@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
    },
    agreeText: {
       color: colors.blue,
-      marginHorizontal: -5
+      marginHorizontal: 15
    },
    agreeTextBold: {
       color: colors.blue,
