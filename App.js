@@ -28,19 +28,19 @@ const Tabs = () => {
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                 let icon;
-    
+    // todo: change folder and icons
                 if (route.name === 'Home') {
                     icon = focused
-                    ? require('./src/assets/home_active.png')
-                    : require('./src/assets/home.png');
+                    ? require('./src/assets/tabs/home_active.png')
+                    : require('./src/assets/tabs/home.png');
                 } else if (route.name === 'Favorites') {
                     icon = focused 
-                    ? require('./src/assets/favorites_active.png') 
-                    : require('./src/assets/favorites.png');
+                    ? require('./src/assets/tabs/favorites_active.png') 
+                    : require('./src/assets/tabs/favorites.png');
                 } else if (route.name === 'Profile') {
                     icon = focused 
-                    ? require('./src/assets/profile_active.png') 
-                    : require('./src/assets/profile.png');
+                    ? require('./src/assets/tabs/profile_active.png') 
+                    : require('./src/assets/tabs/profile.png');
                 }
     
                 // You can return any component that you like here!
