@@ -4,7 +4,7 @@ import Input from "../Input";
 import { styles } from './styles';
 
 
-const Header = ({title, onBackPress, onLogout, showBack, showSearch, showLogout}) => {
+const Header = ({title, onBackPress, onLogout, showBack, showSearch, showLogout, onSearchKeyword, keyword}) => {
     const [showSearchInput, setShowSearchInput] = useState(false)
 
     const onSearch = () => {
@@ -36,7 +36,7 @@ const Header = ({title, onBackPress, onLogout, showBack, showSearch, showLogout}
             </View>
             {
                 showSearchInput ? (
-                    <Input placeholder="Type your keyword" />
+                    <Input onChangeText={onSearchKeyword} value={keyword} placeholder="Type your keyword" />
                 ) : null
             }
         </View>

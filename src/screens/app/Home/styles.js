@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
       padding: 24
    },
    list: { 
-      paddingVertical: 24,
-      backgroundColor: 'blue'
+      paddingVertical: 50,
+      fontSize:50
    }
 });
