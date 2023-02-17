@@ -3,7 +3,6 @@ import { colors } from "../../../utils/colors"
 
 export const styles = StyleSheet.create({
    container: {
-     // paddingVertical: 20,
-      padding: 20
+      padding: 24
    },
 });
