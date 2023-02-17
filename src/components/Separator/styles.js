@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     fontWeight: '500'
   },
   line: {
-    backgroundColor: colors.lightGray,
+    backgroundColor: colors.lightGrey,
     height: 1,
     flex: 1,
     marginVertical: 8

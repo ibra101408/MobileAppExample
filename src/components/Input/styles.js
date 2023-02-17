@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     inputContainer: {
         borderWidth: 0.7,
-        borderColor: colors.gray,
+        borderColor: colors.Grey,
         borderRadius: 10,
         flexDirection: "row",
         alignItems: "center"

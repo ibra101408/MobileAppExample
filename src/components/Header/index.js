@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import { Pressable, Image, Text, View } from "react-native";
+import Input from "../Input";
 import { styles } from './styles';
 
 
-const Header = ({title, onBackPress, onSearch, onLogout, showBack, showSearch, showLogout}) => {
-    
+const Header = ({title, onBackPress, onLogout, showBack, showSearch, showLogout, onSearchKeyword, keyword}) => {
+    const [showSearchInput, setShowSearchInput] = useState(false)
+
+    const onSearch = () => {
+        setShowSearchInput(search => !search)
+    }
+
     return (
+        <View>
             <View style={styles.container}>
                 {
                     showBack ? (
@@ -16,11 +23,23 @@ const Header = ({title, onBackPress, onSearch, onLogout, showBack, showSearch, s
                         <Pressable hitSlop={20} onPress={onSearch}>
                             <Image style={styles.icon} source={require('../../assets/tabs/search.png')} />
                         </Pressable>
-                    ) : null
+                    ) : <View style={styles.space} />
+                }
+            <Text style={styles.title}>{title}</Text>
+                {
+                    showLogout ? (
+                        <Pressable hitSlop={20} onPress={onLogout}>
+                            <Image style={styles.icon} source={require('../../assets/tabs/logout.png')} />
+                        </Pressable>
+                    ) : <View style={styles.space} />
                 }
             </View>
-            //<Text...
-        
+            {
+                showSearchInput ? (
+                    <Input onChangeText={onSearchKeyword} value={keyword} placeholder="Type your keyword" />
+                ) : null
+            }
+        </View>
     )
 }
  
