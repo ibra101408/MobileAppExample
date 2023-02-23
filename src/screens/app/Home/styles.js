@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
       padding: 24
    },
    list: { 
-      paddingVertical: 50,
-      fontSize:50
+      paddingVertical: 25,
+      fontSize:50,
+      
    }
 });

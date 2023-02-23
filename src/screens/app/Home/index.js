@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
         } else if(selectedCategory && keyword) {
             const updatedSelectedProducts = products.filter((product) => 
                 product?.category === selectedCategory && product?.title?.toLowerCase().includes(keyword.toLowerCase()))
-            setSelectedProducts(updateSelectedProducts)
+            setSelectedProducts(updatedSelectedProducts)
             //setSelectedProducts(products)
         } else if(!selectedCategory && keyword){
             const updatedSelectedProducts = products.filter((product) =>
@@ -63,13 +63,14 @@ const Home = ({navigation}) => {
 
                 <FlatList 
                     showsHorizontalScrollIndicator={false} 
-                    styles={styles.list} 
+                    style={styles.list} 
                     horizontal data={categories} 
                     renderItem={renderCategoryItem} 
                     keyExtractor={(item, index) => String(index)}
                 />
                 <FlatList 
                     numColumns={2} 
+                    showsVerticalScrollIndicator={false} 
                     data={selectedProducts} 
                     ListFooterComponent={<View style={{height: 250}} />} 
                     renderItem={renderProductItem}
