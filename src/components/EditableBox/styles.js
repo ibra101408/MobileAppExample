@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils/colors"
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
    container: {
-        padding: 16,
-        flexDirection: 'row',
-        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        
         justifyContent: 'space-between',
         shadowColor: "#000",
         shadowOffset: {
@@ -18,24 +18,15 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.white,
         marginVertical: 12,
         borderRadius: 4,
-        
    },
-   title: {
-        color: colors.blue,
-        fontSize: 18,
-        fontWeight: 'bold',
-   },
-   subtitle: {
+   label: {
         color: colors.grey,
         fontSize: 12,
         marginBottom: 6
    },
-   arrow: {
-        height: 32,
-        width: 32,
-        transform: [{ rotate: '180deg'}]
-   },
-   titleText: {
-        color: colors.black
-   }
+   input: {
+        color: colors.blue,
+        fontSize: 14,
+        fontWeight: '500'
+   }   
 });
