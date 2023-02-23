@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     },
     description: {
         color: colors.textGrey,
-        fontWeišght: '300',
+        fontWeight: '300',
         marginVertical: 8
     },
     footer: {
@@ -52,13 +52,15 @@ export const styles = StyleSheet.create({
     },
     backContainer: {
         backgroundColor: colors.white,
-        padding: 10,
+        padding: 5,
         margin: 24,
         borderRadius: 8,
+        
         position: 'absolute'
     },
     backIcon: {
         width: 20,
-        height: 20
+        height: 20,
+        
     }
 });
