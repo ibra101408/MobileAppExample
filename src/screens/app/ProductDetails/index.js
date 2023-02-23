@@ -1,7 +1,8 @@
 import React from "react";
-import { ScrollView, Text, View, Image } from "react-native";
+import { ScrollView, Text, View, Image, Pressable } from "react-native";
 import { styles } from './styles';
 import { SafeAreaView } from "react-native-safe-area-context";
+import Button from "../../../components/Button";
 
 const ProductDetails = ({navigation, route}) => {
     console.log('navigation => ', navigation)
@@ -10,7 +11,7 @@ const ProductDetails = ({navigation, route}) => {
     console.log('product=> ', product)
     
     return(
-        <SafeAreaView>
+        <SafeAreaView style={styles.save}>
             <ScrollView>
                 <Image style={styles.image} source={{uri: product?.image}} />
                     <View style={styles.content}>
@@ -19,6 +20,12 @@ const ProductDetails = ({navigation, route}) => {
                         <Text style={styles.description}>{product?.description}</Text>
                     </View>
                 </ScrollView>
+                <View style={styles.footer}>
+                    <Pressable style={styles.bookmarkContainer}>
+                        <Image style={styles.bookmarkIcon} source={require('../../../assets/tabs/favorites.png')}/>
+                    </Pressable>
+                    <Button title="Contact seller" />
+                </View>
         </SafeAreaView>      
     )
 }
