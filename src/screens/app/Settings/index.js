@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, Linking, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
 import Header from "../../../components/Header";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ListItem from "../../../components/ListItem";
 import EditableBox from "../../../components/EditableBox";
+import Button from "../../../components/Button";
 
 const Settings = () => {
+    const [editing, setEditing] = useState(false)
+    const [values, setValues] = useState({name: 'User', email: 'user@gmail.com'})
+    
+    const onChange = (key, value) => {
+        setValues(v => ({...v, [key]: value}))
+    }
+    
+    const onEditPress = () => {
+        console.log(editing)
+        setEditing(true)
+    }
+
+    const onSave = () => {
+        setEditing(false)
+    }
     const onItemPress = () => {
         Linking.openURL('https://google.com')
     }
@@ -17,12 +33,26 @@ const Settings = () => {
             <View style={styles.container}>
                 <View style={styles.sectionHeader}>
                     <Text style={styles.sectionTitle}>Personal Information</Text>
-                    <Image style={styles.icon} source={require('../../../assets/tabs/edit.png')} />
+                    <Pressable onPress={onEditPress}>
+                        <Image style={styles.icon} resizeMode="contain" source={require('../../../assets/tabs/edit.png')} />
+                    </Pressable>
                 </View>
 
-                <EditableBox label="Name" value="User name" editable="false" />
-                <EditableBox label="Email" value="User email" editable="true" />
+                <EditableBox 
+                    onChangeText={(v) => onChange('name', v)}
+                    label="Name" 
+                    value={values.name} 
+                    editable={editing} 
+                />
+                <EditableBox 
+                    onChangeText={(v) => onChange('email', v)}
+                    label="Email" 
+                    value={values.email} 
+                    editable={editing} 
+                />
 
+                {editing ? (<Button style={styles.button} onPress={onSave} title="Save"/>) : null}
+                
                 <Text style={styles.sectionTitle}>Help Center</Text>
                 <ListItem onPress={onItemPress} style={styles.item} title="FAQ" />
                 <ListItem onPress={onItemPress} style={styles.item} title="Contact Us" />
