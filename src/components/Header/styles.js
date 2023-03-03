@@ -3,20 +3,25 @@ import { colors } from "../../utils/colors"
 
 export const styles = StyleSheet.create({
    container: {
-     flexDirection: 'row',
-     alignItems: 'center',
-     justifyContent: 'space-between'
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between'
    },
    title: {
-    color: colors.black,
-    fontSize: 16,
-    fontWeight: 'bold'
+      color: colors.black,
+      fontSize: 16,
+      fontWeight: 'bold'
    },
    icon: {
-    width: 24,
-    height: 24
+      width: 24,
+      height: 24
    },
    space: {
-    width: 24
+      width: 24
+   },
+   logout: {
+      width: 12,
+      height: 12,
+      transform: [{ rotate: '180deg'}]
    }
 });
