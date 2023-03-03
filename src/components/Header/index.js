@@ -29,7 +29,7 @@ const Header = ({title, onBackPress, onLogout, showBack, showSearch, showLogout,
                 {
                     showLogout ? (
                         <Pressable hitSlop={20} onPress={onLogout}>
-                            <Image style={styles.icon} source={require('../../assets/tabs/logout.png')} />
+                            <Image resizeMode="contain" style={[styles.icon, styles.logout]} source={require('../../assets/tabs/logout.png')} />
                         </Pressable>
                     ) : <View style={styles.space} />
                 }

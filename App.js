@@ -56,7 +56,7 @@ const Tabs = () => {
                 }
     
                 // You can return any component that you like here!
-                return <Image style={{width: 24, height: 24}} source={icon} />;
+                return <Image resizeMode="contain" style={{width: 24, height: 24}} source={icon} />;
                 },
                 headerShown: false,
                 tabBarShowLabel: false,
