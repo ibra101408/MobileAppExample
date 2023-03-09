@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Alert } from "react-native";
 import { styles } from './styles';
 import AuthHeader from "../../../components/AuthHeader";
@@ -8,11 +8,14 @@ import Button from "../../../components/Button";
 import Separator from "../../../components/Separator";
 import GoogleLogin from "../../../components/GoogleLogin";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import axios from "axios";
+import { UserContext } from "../../../../App";
 
 
 const Signup = ({navigation}) => {
     const [checked, setChecked] = useState(false)
     const [values, setValues] = useState({})
+    const {user, setUser} = useContext(UserContext)
 
     const onBack = () => {
         navigation.goBack()
@@ -31,7 +34,31 @@ const Signup = ({navigation}) => {
             Alert.alert('All fields are required!')
             return
         }
-        console.log('values => ', values)
+        if(!checked){
+            Alert.alert('Please agree with the terms')
+            return
+        }
+        axios.post('http://192.168.18.4/api/user/register', values)
+        .then(response => {
+            console.log('signup  => ', response)
+            const {email, password} = values
+            axios.post('http://192.168.18.4/api/user/login', values)
+            .then(async (response) => {
+                console.log('login => ', response)
+                const accessToken = response?.data?.accessToken
+                console.log(accessToken)
+                setUser({ accessToken })
+                if(response?.data?.token){
+                    await AsyncStorage.setItem('auth_token', `${response?.data?.token}`)
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        })
+        .catch(error => {
+            console.error(error);
+        })
     }
 
     return(
@@ -63,7 +90,7 @@ const Signup = ({navigation}) => {
                     <Text style={styles.agreeTextBold}> Terms </Text>&
                     <Text style={styles.agreeTextBold}> Privacy</Text></Text>
                 </View>
-                <Button onPress={onSubmit} style={styles.button} title="Sign Up/in?" />
+                <Button onPress={onSubmit} style={styles.button} title="Sign Up" />
                 <Separator text="Or sign up with" />
                 <GoogleLogin />
                 <Text style={styles.footerText}>Already have an account?
