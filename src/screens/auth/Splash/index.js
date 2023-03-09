@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Image, Pressable, Text, View} from "react-native";
 import { styles } from './styles';
 import Button from "../../../components/Button";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { UserContext } from "../../../../App";
 
 const Splash = ({navigation}) => {
-    console.log('navigation => ', navigation)
+    const user = useContext(UserContext)
+    console.log('user => ', user)
+    //console.log('navigation => ', navigation)
 
     const onSignup = () => {
         navigation.navigate('Signup')

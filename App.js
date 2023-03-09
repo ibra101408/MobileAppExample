@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, SafeAreaView } from "react-native";
 
 import Signup from "./src/screens/auth/Signup";
@@ -20,9 +20,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { colors } from "./src/utils/colors";
 import ProductDetails from "./src/screens/app/ProductDetails";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+export const UserContext = React.createContext()
 
 const ProfileStack = () => {
     return (
@@ -71,7 +74,16 @@ const Tabs = () => {
 }
 
 const App = () => {
-    const isSignedIn = true
+    //const isSignedIn = false
+    const [user, setUser] = useState()
+    
+    useEffect(() => {
+        (async () => {
+            const accessToken = await AsyncStorage.getItem('auth_token')
+            setUser({ accessToken })
+        })()
+    }, [])
+
     useEffect(() => {
         GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive.readonly'], 
@@ -87,26 +99,29 @@ const App = () => {
         },
     };
 
+
     return(
         <SafeAreaProvider>
-            <NavigationContainer theme={theme}>
-                <Stack.Navigator> 
-                    {
-                        isSignedIn ? (
-                            <>
-                                <Stack.Screen name="Tabs" component={Tabs} options={{headerShown: false}} /> 
-                                <Stack.Screen name="ProductDetails" component={ProductDetails} options={{headerShown: false}} />
-                            </>
-                        ) : (
-                            <>
-                                <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/>
-                                <Stack.Screen name="Signin" component={Signin} options={{headerShown: false}}/>
-                                <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}}/>
-                            </>
-                        )
-                    }
-                </Stack.Navigator>
-            </NavigationContainer>
+            <UserContext.Provider value = {{user, setUser}}>
+                <NavigationContainer theme={theme}>
+                    <Stack.Navigator> 
+                        {
+                            user?.accessToken ? (
+                                <>
+                                    <Stack.Screen name="Tabs" component={Tabs} options={{headerShown: false}} /> 
+                                    <Stack.Screen name="ProductDetails" component={ProductDetails} options={{headerShown: false}} />
+                                </>
+                            ) : (
+                                <>
+                                    <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}}/>
+                                    <Stack.Screen name="Signin" component={Signin} options={{headerShown: false}}/>
+                                    <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}}/>
+                                </>
+                            )
+                        }
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </UserContext.Provider>
         </SafeAreaProvider>
     );
 };
